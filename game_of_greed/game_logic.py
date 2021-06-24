@@ -1,11 +1,24 @@
+import random
 import collections
 import random
 import math
 import sys
 
 class GameLogic:
-    def __init__ (self, dice_roll):
+    def __init__ (self, dice_roll, free_dice):
         self.dice_roll = dice_roll
+        self.free_dice = free_dice
+        
+    
+    @staticmethod
+    def roll_dice(free_dice):
+        if free_dice == None:
+            free_dice = free_dice
+        if free_dice == 0:
+            return()
+        roll = tuple(random.randint(1, 6) for i in range(free_dice))
+        print('You rolled a ' + str(roll))
+        return roll
 
     @staticmethod
     def calculate_score(dice_roll):
@@ -96,15 +109,7 @@ class GameLogic:
             score += 0
             return score
 
-        
-        
-
-    @staticmethod
-    def roll_dice(self, available_dice=None):
-
-        pass
 
 class Banker:
     pass
 
-        
