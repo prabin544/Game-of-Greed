@@ -1,13 +1,13 @@
-import pytest
-from game_of_greed.banker import Banker
+# import pytest
+# from game_of_greed.banker import Banker
 
-pytestmark = [pytest.mark.version_1, pytest.mark.version_2]
+# pytestmark = [pytest.mark.version_1, pytest.mark.version_2]
 
 
-def test_new_banker():
-    banker = Banker()
-    assert banker.balance == 0
-    assert banker.shelved == 0
+# def test_new_banker():
+#     banker = Banker()
+#     assert banker.balance == 0
+#     assert banker.shelved == 0
 
 
 # def test_shelf():
