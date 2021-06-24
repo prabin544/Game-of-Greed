@@ -1,24 +1,3 @@
-"""
-- Handle rolling dice
-- Add `roll_dice` static method to GameLogic class.
-- The input to `roll_dice` is an integer between 1 and 6.
-- The output of `roll_dice` is a tuple with random values between 1 and 6.
-- The length of tuple must match the argument given to `roll_dice` method.
-
-"""
-import pytest
-from game_of_greed.game_logic import GameLogic
-
-pytestmark = [pytest.mark.version_1]
-
-
-def test_1_dice():
-    values = GameLogic.roll_dice(1)
-    assert len(values) == 1
-    value = values[0]
-    assert 1 <= value <= 6
-
-
 def test_2_dice():
     values = GameLogic.roll_dice(2)
     assert len(values) == 2
