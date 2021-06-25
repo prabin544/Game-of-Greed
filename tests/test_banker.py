@@ -25,11 +25,11 @@ def test_deposit():
     assert banker.balance == 100
 
 
-# # def test_clear_shelf():
-# #     banker = Banker()
-# #     banker.shelf(100)
-# #     banker.bank()
-# #     banker.shelf(50)
-# #     banker.clear_shelf()
-# #     assert banker.balance == 100
-# #     assert banker.shelved == 0
+def test_clear_shelf():
+    banker = Banker()
+    banker.shelf(100)
+    banker.bank()
+    banker.shelf(50)
+    banker.clear_shelf()
+    assert banker.balance == 100
+    assert banker.shelved == 0
