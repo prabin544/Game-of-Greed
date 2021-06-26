@@ -1,3 +1,6 @@
+import pytest
+from game_of_greed.game_logic import GameLogic
+
 def test_2_dice():
     values = GameLogic.roll_dice(2)
     assert len(values) == 2

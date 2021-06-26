@@ -1,13 +1,13 @@
-# import pytest
-# from game_of_greed.game_logic import GameLogic
+import pytest
+from game_of_greed.game_logic import GameLogic
 
-# pytestmark = [pytest.mark.version_1]
+pytestmark = [pytest.mark.version_1]
 
 
-# def test_single_five():
-#     actual = GameLogic.calculate_score((5,))
-#     expected = 50
-#     assert actual == expected
+def test_single_five():
+    actual = GameLogic.calculate_score((5,))
+    expected = 50
+    assert actual == expected
 
 
 def test_single_one():
