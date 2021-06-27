@@ -2,14 +2,18 @@ from game_of_greed.game_logic import GameLogic
 from game_of_greed.banker import Banker 
 
 
-class Game():
+class Game:
+    balance = 0 
+    shelved = 0 
     def __init__(self):
         self.round = 1
         self.remaining_dice = 6
-        # self.bank = Banker()
+        self.bank = Banker()
+        
 
 
-    def play(self, roller):
+    def play(self, roller=GameLogic.roll_dice):
+        # bank = Banker()
         score = 0
         self.roller = roller or GameLogic.roll_dice
         print("Welcome to Game of Greed")
@@ -34,17 +38,18 @@ class Game():
                 if answer.isnumeric():
                     lnDice = len(answer)
                     numbers = tuple(map(int, answer))
+
                     remaining_dice = self.remaining_dice - lnDice
-                    score += GameLogic.calculate_score(numbers)
+                    score = GameLogic.calculate_score(numbers)
+                    self.shelved = self.shelved + score                  
                     print(f'You have {score} unbanked points and {remaining_dice} dice remaining')
                     print("(r)oll again, (b)ank your points or (q)uit:")
                     answer = input("> ")
-                    if answer == 'b':
-                        # BANK CLass
-                        bankPoint = Banker.bank.balance
-                        self.bank
+                    if answer == 'b':  
+                        bank_value = self.bank.bank()                
+                        bank_point = self.shelved
                         
-                        print(f'You banked {bankPoint} points in round {self.round}')
+                    print(f'You banked {bank_point} points in round {self.round}')
                     print(f'Total score is {score} points')
                     self.round += 1
                 elif answer == "q":
@@ -58,3 +63,8 @@ def print_dice(tuple):
         string += f'{str(dice)} '
     string += ""
     return string
+    
+if __name__ == '__main__':
+    game1 = Game()
+    game1.play()
+              

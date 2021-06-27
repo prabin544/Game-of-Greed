@@ -8,8 +8,10 @@ class Banker():
         self.shelved += pointDeposit
 
     def bank(self):
+        temp_shelved = self.shelved
         self.balance += self.shelved
         self.shelved = 0
+        return temp_shelved
 
     def clear_shelf(self):
         self.shelved = 0
