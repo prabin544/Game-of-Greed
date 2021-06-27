@@ -26,10 +26,22 @@ class GameLogic:
         pairs = 0
         c = collections.Counter(dice_roll)
 
+        # # one and five
+        # for i in c:
+        #     if c[1] == 1 and c[5] == 1:
+        #         score += 200000
+        #         return score
+
         # three_ones_and_a_five
         for i in c:
             if c[1] == 3 and c[5] == 1:
                 score += 1050
+                return score
+
+        # three_three_and_a_five
+        for i in c:
+            if c[3] == 3 and c[5] == 1:
+                score += 350
                 return score
 
         # six_ones
@@ -43,6 +55,8 @@ class GameLogic:
             if k == 5 and v == 3:
                 score += 500
                 return score
+
+        
 
         # three_ones
         for k, v in c.items():
@@ -110,6 +124,5 @@ class GameLogic:
             return score
 
 
-class Banker:
-    pass
+
 

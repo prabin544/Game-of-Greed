@@ -6,10 +6,11 @@ class Game():
     def __init__(self):
         self.round = 1
         self.remaining_dice = 6
-        self.bank = Banker()
+        # self.bank = Banker()
+
 
     def play(self, roller):
-
+        score = 0
         self.roller = roller or GameLogic.roll_dice
         print("Welcome to Game of Greed")
         print("(y)es to play or (n)o to decline")
@@ -29,27 +30,26 @@ class Game():
                 print(f'*** {to_print}***')
                 print("Enter dice to keep, or (q)uit:")
                 answer = input("> ")
-                # checking to see if the answer is an integer
+                # checking to see if the answer is an integer                
                 if answer.isnumeric():
-                    # remaining dice is being properly calculated
-                    self.remaining_dice = int(answer)
-                    # unable to properly access unbanked points/shelved?  Are we pushing the points into the shelf? 
-                    print(f'You have {self.bank.shelved} unbanked points and {self.remaining_dice} dice remaining')
+                    lnDice = len(answer)
+                    numbers = tuple(map(int, answer))
+                    remaining_dice = self.remaining_dice - lnDice
+                    score += GameLogic.calculate_score(numbers)
+                    print(f'You have {score} unbanked points and {remaining_dice} dice remaining')
                     print("(r)oll again, (b)ank your points or (q)uit:")
-                    # was still writing things figuring these out.
-                    # roll_again = input("> ")
-                    # if roll_again == "b":
-                    #     self.bank.bank()
-                    # elif roll_again == "r":
-                    #     continue
-                    # elif roll_again =="q":
-
-                    print(f'You banked {self.bank.balance} points in round {self.round}')
-                    print(f'Total score is {self.bank.balance} points')
+                    answer = input("> ")
+                    if answer == 'b':
+                        # BANK CLass
+                        bankPoint = Banker.bank.balance
+                        self.bank
+                        
+                        print(f'You banked {bankPoint} points in round {self.round}')
+                    print(f'Total score is {score} points')
                     self.round += 1
                 elif answer == "q":
                     running = False
-                    print(f'Thanks for playing. You earned {self.bank.balance} points')
+                    print(f'Thanks for playing. You earned {score} points')
 
 
 def print_dice(tuple):
