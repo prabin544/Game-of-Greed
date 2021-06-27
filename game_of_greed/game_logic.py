@@ -17,7 +17,7 @@ class GameLogic:
         if free_dice == 0:
             return()
         roll = tuple(random.randint(1, 6) for i in range(free_dice))
-        print('You rolled a ' + str(roll))
+        # print('You rolled a ' + str(roll))
         return roll
 
     @staticmethod
