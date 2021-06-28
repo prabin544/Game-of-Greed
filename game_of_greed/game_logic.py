@@ -1,11 +1,24 @@
+import random
 import collections
 import random
 import math
 import sys
 
 class GameLogic:
-    def __init__ (self, dice_roll):
+    def __init__ (self, dice_roll, free_dice):
         self.dice_roll = dice_roll
+        self.free_dice = free_dice
+        
+    
+    @staticmethod
+    def roll_dice(free_dice):
+        if free_dice == None:
+            free_dice = free_dice
+        if free_dice == 0:
+            return()
+        roll = tuple(random.randint(1, 6) for i in range(free_dice))
+        # print('You rolled a ' + str(roll))
+        return roll
 
     @staticmethod
     def calculate_score(dice_roll):
@@ -13,10 +26,22 @@ class GameLogic:
         pairs = 0
         c = collections.Counter(dice_roll)
 
+        # # one and five
+        # for i in c:
+        #     if c[1] == 1 and c[5] == 1:
+        #         score += 200000
+        #         return score
+
         # three_ones_and_a_five
         for i in c:
             if c[1] == 3 and c[5] == 1:
                 score += 1050
+                return score
+
+        # three_three_and_a_five
+        for i in c:
+            if c[3] == 3 and c[5] == 1:
+                score += 350
                 return score
 
         # six_ones
@@ -30,6 +55,8 @@ class GameLogic:
             if k == 5 and v == 3:
                 score += 500
                 return score
+
+        
 
         # three_ones
         for k, v in c.items():
@@ -96,15 +123,6 @@ class GameLogic:
             score += 0
             return score
 
-        
-        
 
-    @staticmethod
-    def roll_dice(self, available_dice=None):
 
-        pass
 
-class Banker:
-    pass
-
-        
