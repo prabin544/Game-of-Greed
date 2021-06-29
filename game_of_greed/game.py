@@ -49,12 +49,13 @@ class Game:
                         bank_value = self.bank.bank()                
                         bank_point = self.shelved
                         
-                    print(f'You banked {bank_point} points in round {self.round}')
-                    print(f'Total score is {score} points')
+                    print(f'You banked {score} points in round {self.round}')
+                    print(f'Total score is {bank_point} points')
                     self.round += 1
                 elif answer == "q":
                     running = False
-                    print(f'Thanks for playing. You earned {score} points')
+                    bank_point = self.shelved
+                    print(f'Thanks for playing. You earned {bank_point} points')
 
 
 def print_dice(tuple):
