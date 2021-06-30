@@ -8,7 +8,6 @@ class GameLogic:
     def __init__ (self, dice_roll, free_dice):
         self.dice_roll = dice_roll
         self.free_dice = free_dice
-        
     
     @staticmethod
     def roll_dice(free_dice):
