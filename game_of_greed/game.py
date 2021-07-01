@@ -1,19 +1,17 @@
+from random import shuffle
 from game_of_greed.game_logic import GameLogic
 from game_of_greed.banker import Banker 
 
 
 class Game:
     balance = 0 
-    shelved = 0 
+    shelved = 0
     def __init__(self):
         self.round = 1
         self.remaining_dice = 6
         self.bank = Banker()
         
-
-
-    def play(self, roller=GameLogic.roll_dice):
-        # bank = Banker()
+    def play(self, roller):
         score = 0
         self.roller = roller or GameLogic.roll_dice
         print("Welcome to Game of Greed")
@@ -41,21 +39,18 @@ class Game:
 
                     remaining_dice = self.remaining_dice - lnDice
                     score = GameLogic.calculate_score(numbers)
-                    self.shelved = self.shelved + score                  
+                    self.bank.shelf(score)
                     print(f'You have {score} unbanked points and {remaining_dice} dice remaining')
                     print("(r)oll again, (b)ank your points or (q)uit:")
                     answer = input("> ")
                     if answer == 'b':  
-                        bank_value = self.bank.bank()                
-                        bank_point = self.shelved
-                        
+                        self.bank.bank()
                     print(f'You banked {score} points in round {self.round}')
-                    print(f'Total score is {bank_point} points')
+                    print(f'Total score is {self.bank.balance} points')
                     self.round += 1
                 elif answer == "q":
                     running = False
-                    bank_point = self.shelved
-                    print(f'Thanks for playing. You earned {bank_point} points')
+                    print(f'Thanks for playing. You earned {self.bank.balance} points')
 
 
 def print_dice(tuple):

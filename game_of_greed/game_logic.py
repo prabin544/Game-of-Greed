@@ -24,17 +24,23 @@ class GameLogic:
     @staticmethod
     def get_scorers(dice_roll):
         print(f' Test input is {dice_roll}')
-        final_out = ()
+        keepers = ()
         for dice in dice_roll:
             if 1 in dice_roll and 5 in dice_roll:
-                final_out = (1, 5)
+                keepers = (1, 5)
             elif 1 in dice_roll:
-                final_out = (1,)
+                keepers = (1,)
             elif 5 in dice_roll:
-                final_out = (5,)
+                keepers = (5,)
             else:
-                final_out = ()
-        return final_out
+                keepers = ()
+        return keepers
+
+    @staticmethod
+    def validate_keepers(roll, keepers):
+        roll_counter = collections.Counter(roll)
+        keepers_counter = collections.Counter(keepers)
+        return len(keepers_counter - roll_counter) == 0
 
 
     @staticmethod
