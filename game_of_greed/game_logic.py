@@ -8,6 +8,8 @@ class GameLogic:
     def __init__ (self, dice_roll, free_dice):
         self.dice_roll = dice_roll
         self.free_dice = free_dice
+
+
     
     @staticmethod
     def roll_dice(free_dice):
@@ -18,6 +20,22 @@ class GameLogic:
         roll = tuple(random.randint(1, 6) for i in range(free_dice))
         # print('You rolled a ' + str(roll))
         return roll
+
+    @staticmethod
+    def get_scorers(dice_roll):
+        print(f' Test input is {dice_roll}')
+        final_out = ()
+        for dice in dice_roll:
+            if 1 in dice_roll and 5 in dice_roll:
+                final_out = (1, 5)
+            elif 1 in dice_roll:
+                final_out = (1,)
+            elif 5 in dice_roll:
+                final_out = (5,)
+            else:
+                final_out = ()
+        return final_out
+
 
     @staticmethod
     def calculate_score(dice_roll):
