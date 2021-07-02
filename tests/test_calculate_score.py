@@ -69,6 +69,10 @@ def test_three_of_a_kind():
     expected = 200
     assert actual == expected
 
+def test_three_of_a_kind_fours():
+    actual = GameLogic.calculate_score((4, 4, 4))
+    expected = 400
+    assert actual == expected
 
 def test_four_of_a_kind():
     actual = GameLogic.calculate_score((2, 2, 2, 2))
