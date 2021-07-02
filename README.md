@@ -2,3 +2,4 @@
 ## Credits
 Ben Hill
 Anthony Beaver
+Hex King
