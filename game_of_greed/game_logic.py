@@ -1,5 +1,6 @@
 import random
 import collections
+from collections import Counter
 import random
 import math
 import sys
@@ -37,9 +38,14 @@ class GameLogic:
 
     @staticmethod
     def validate_keepers(roll, keepers):
-        roll_counter = collections.Counter(roll)
-        keepers_counter = collections.Counter(keepers)
-        return len(keepers_counter - roll_counter) == 0
+        # version_3
+
+        return not Counter(keepers) - Counter(roll)
+
+    # def validate_keepers(roll, keepers):
+    #     roll_counter = collections.Counter(roll)
+    #     keepers_counter = collections.Counter(keepers)
+    #     return len(keepers_counter - roll_counter) == 0
 
     @staticmethod
     def calculate_score(dice):

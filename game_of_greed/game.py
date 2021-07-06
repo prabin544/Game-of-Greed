@@ -27,11 +27,13 @@ class Game:
             running = True
             while running:
                 self.play_round()
-
+                current_dice = self.dice_str
                 turn = True
                 while turn is True:
                     answer = input("> ")
                     if answer.isnumeric():
+                        # while self.cheater() is True:
+                        #     self.cheater(current_dice, answer)
                         self.answer_numeric(answer)
                     elif answer == 'b':
                         self.bank_it(score, self.cur_round)
@@ -48,9 +50,11 @@ class Game:
     def roll_again(self):
         print(f'Rolling {self.remaining_dice} dice...')
         dice = self.roller(self.remaining_dice)
+        self.dice_str = str(dice)
         to_print = self.print_dice(dice)
         print(f'*** {to_print}***')
         print("Enter dice to keep, or (q)uit:")
+
 
     def bank_it(self, shelved, balance):
         print(f'You banked {self.bank.shelved} points in round {self.cur_round}')
@@ -60,14 +64,14 @@ class Game:
     def answer_numeric(self, answer):
         lnDice = len(answer)
         numbers = tuple(map(int, answer))
-        # answerTuple = tuple(map(int, answer))
-        # numberTuple = tuple(numbers)
-        # print(f'answer is {test} and Numbers is {test1}')
         self.remaining_dice = self.remaining_dice - lnDice
         score = GameLogic.calculate_score(numbers)
         self.bank.shelf(score)
-        print(f'You have {self.bank.shelved} unbanked points and {self.remaining_dice} dice remaining')
-        print("(r)oll again, (b)ank your points or (q)uit:")
+        if score == 0:
+            self.bankrupt()
+        else:
+            print(f'You have {self.bank.shelved} unbanked points and {self.remaining_dice} dice remaining')
+            print("(r)oll again, (b)ank your points or (q)uit:")
 
     def play_round(self):
         self.remaining_dice = 6
@@ -76,12 +80,13 @@ class Game:
         self.roll_again()
 
     def bankrupt(self):
-        self.bank.clear_shelf
-        print("""
+            self.bank.clear_shelf
+            print(
+            """
             ****************************************
             **        Zilch!!! Round over         **
-            ****************************************
-        """)
+           ****************************************
+            """)
 
     def print_dice(self, tuple):
         string = ""
@@ -89,6 +94,22 @@ class Game:
             string += f'{str(dice)} '
         string += ""
         return string
+
+    # def cheater(self, current_dice, answer):
+    #         print("Cheater!!! Or possibly made a typo...")
+    #         print(f'*** {current_dice}***')
+    #         print("Enter dice to keep, or (q)uit:")
+        # for i in pumpkin_eater:
+        #     for j in answer:
+        #         if i == j:
+        #             pumpkin_eater = pumpkin_eater - i
+        #             answer = answer - j
+        #             print(answer)
+        #             print(pumpkin_eater)
+
+        # print("dice", self.dice_str)
+        # print("answer", answer)
+
     
 if __name__ == '__main__':
     game1 = Game()
